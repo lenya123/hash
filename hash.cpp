@@ -2,14 +2,23 @@
 #include <functional>
 #include <stdexcept>
 
-HashTable::HashTable(size_t size) noexcept 
-    : _capacity(size), _filled(0), table(size) {}
+HashTable::HashTable(size_t size) noexcept : _capacity(size), _filled(0), table(size) {}
 
 HashTable::~HashTable() = default;
 
-size_t HashTable::hash_function(const KeyType &key) const {
-    std::hash<KeyType> hash_fn;
-    return hash_fn(key) % _capacity;
+size_t HashTable::hash_function(const KeyType &key) const
+{
+    int base = 17;
+    size_t hash = 0;
+    for (size_t i = 0; i < key.size(); ++i)
+    {
+        hash += key[0] * pow(base, key.size() - 1 - i);
+    }
+    return _capacity != 0 ? hash % _capacity : 0;
+}
+double HashTable::getLoadFactor()
+{
+    return _capacity == 0 ? 0 : static_cast<double>(_filled) / static_cast<double>(_capacity);
 }
 
 double HashTable::getLoadFactor() {
