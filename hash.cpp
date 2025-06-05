@@ -16,10 +16,6 @@ size_t HashTable::hash_function(const KeyType &key) const
     }
     return _capacity != 0 ? hash % _capacity : 0;
 }
-double HashTable::getLoadFactor()
-{
-    return _capacity == 0 ? 0 : static_cast<double>(_filled) / static_cast<double>(_capacity);
-}
 
 double HashTable::getLoadFactor() {
     return static_cast<double>(_filled) / _capacity;
