@@ -12,7 +12,7 @@ size_t HashTable::hash_function(const KeyType &key) const
     size_t hash = 0;
     for (size_t i = 0; i < key.size(); ++i)
     {
-        hash += key[0] * pow(base, key.size() - 1 - i);
+        hash += key[i] * pow(base, key.size() - 1 - i);
     }
     return _capacity != 0 ? hash % _capacity : 0;
 }
