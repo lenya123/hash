@@ -3,6 +3,7 @@
 #include <list>
 #include <string>
 #include <utility>
+#include <cmath>
 
 using KeyType = std::string;
 using ValueType = double;
